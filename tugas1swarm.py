@@ -1,7 +1,7 @@
 import math
 
 #Read file
-filetsp = open('Swarm016.tsp','r')
+filetsp = open('Tugas 1 CSH4313 Kecerdasan Kolektif Ganjil 2018-2019.enc/Swarm016.tsp','r')
 
 #Defining function
 def euclid(x1,x2,y1,y2):
@@ -22,7 +22,7 @@ idx -= 1
 x,y = idx,idx
 matrix = [[0 for dataX in range(x)] for dataY in range(y)]
 
-#Fill in distance matrix  
+#Fill in distance matrix
 for i in range(0,x):
     for j in range(0,y):
         matrix[i][j] = euclid(float(data[j][1]),float(data[i][1]),float(data[j][2]),float(data[i][2]))
