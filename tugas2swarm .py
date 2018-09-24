@@ -2,7 +2,7 @@ import math
 import random
 
 #Read file
-filetsp = open('Tugas 1 CSH4313 Kecerdasan Kolektif Ganjil 2018-2019.enc/Swarm016.tsp','r')
+filetsp = open('Tugas 1 CSH4313 Kecerdasan Kolektif Ganjil 2018-2019.enc/Swarm096.tsp','r')
 
 #Defining function
 def euclid(x1,x2,y1,y2):
