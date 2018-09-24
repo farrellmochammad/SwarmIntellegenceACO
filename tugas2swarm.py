@@ -31,7 +31,7 @@ def countLk(tabulist,distancematrix):
     Lkmatrix = []
     for i in range(0,len(tabulist)):
         sum = 0
-        for j in range(0,len(tabulist)):
+        for j in range(0,len(tabulist[0])-1):
             sum += distancematrix[tabulist[i][j]][tabulist[i][j+1]]
         Lkmatrix.append(sum)
     return Lkmatrix   
@@ -66,25 +66,28 @@ t = 0
 NC = 0
 Minvalue = 1000
 c = 0.5
-Q = 0.53
+Q = 1
 alpha = 15
 beta = 20
 NCmax = 100
 matrixdeltaTij =  [[0 for dataX in range(x)] for dataY in range(y)]
 matrixTij = [[c for dataX in range(x)] for dataY in range(y)]
-ant = x
+ant = 96
 prevmatrix = []
 
 while (NC<=NCmax) :
     #part 2 : Initialization ant to tabu list
     s = 0
-    tabulist = [[0 for dataX in range(x+1)] for dataY in range(y)]
+    tabulist = [[0 for dataX in range(x+1)] for dataY in range(ant)]
     for k in range(0,x):
+        tabulist[k][0] = k
+    for k in range(x,ant):
         tabulist[k][0] = random.randint(0,x-1)
+    
 
     #part 3 : Append route to each tabulist
     l = 0
-    while(l<x):
+    while(l<ant):
         townvisited = []
         townvisited.append(tabulist[l][0])
         for m in range(0,y-1):
@@ -94,7 +97,7 @@ while (NC<=NCmax) :
         l += 1
 
     #part 4 : Update Pheromone
-    for n in range(0,x):
+    for n in range(0,ant):
         tabulist[n][x]=tabulist[n][0]
         towntravelmatrix = countLk(tabulist,distancematrix)
         if prevmatrix!=[]:
@@ -103,20 +106,21 @@ while (NC<=NCmax) :
         else :
             prevmatirx = towntravelmatrix
     for n in range(0,len(tabulist)):
-        for o in range(0,len(tabulist)):
+        for o in range(0,len(tabulist[0])-1):
             deltaij = Q/towntravelmatrix[n]
             matrixdeltaTij[tabulist[n][o]][tabulist[n][o+1]] += deltaij
 
     #part 5 :
-    for o in range(0,len(tabulist)):
-        matrixTij[tabulist[n][o]][tabulist[n][o+1]] = 0.113 * matrixTij[tabulist[n][o]][tabulist[n][o+1]] + matrixdeltaTij[tabulist[n][o]][tabulist[n][o+1]]
+    for o in range(0,len(tabulist[0])-1):
+        matrixTij[tabulist[n][o]][tabulist[n][o+1]] = 0.357 * matrixTij[tabulist[n][o]][tabulist[n][o+1]] + matrixdeltaTij[tabulist[n][o]][tabulist[n][o+1]]
     t += 1
-    NC += 1 
     matrixdeltaTij =  [[0 for dataX in range(x)] for dataY in range(y)]
     
     if (Minvalue>min(towntravelmatrix)):
         Minvalue = min(towntravelmatrix)
-    print ("Solusi terbaik : ",Minvalue)
+    print ("Solusi jarak terbaik ke ",NC,  " : ",Minvalue)
+    print ("Solusi rute terbaik : ",tabulist[towntravelmatrix.index(min(towntravelmatrix))])
+
     #part 6 :
     if (NC<NCmax) :
         tabulist = [[0 for dataX in range(x+1)] for dataY in range(y)]

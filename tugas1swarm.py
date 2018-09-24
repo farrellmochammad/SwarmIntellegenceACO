@@ -79,8 +79,11 @@ while (NC<=NCmax) :
     #part 2 : Initialization ant to tabu list
     s = 0
     tabulist = [[0 for dataX in range(x+1)] for dataY in range(ant)]
-    for k in range(0,ant):
+    for k in range(0,x):
+        tabulist[k][0] = k
+    for k in range(x,ant):
         tabulist[k][0] = random.randint(0,x-1)
+    
 
     #part 3 : Append route to each tabulist
     l = 0
@@ -116,7 +119,7 @@ while (NC<=NCmax) :
     if (Minvalue>min(towntravelmatrix)):
         Minvalue = min(towntravelmatrix)
     print ("Solusi jarak terbaik ke ",NC,  " : ",Minvalue)
-    #print ("Solusi rute terbaik : ",tabulist[towntravelmatrix.index(min(towntravelmatrix))])
+    print ("Solusi rute terbaik : ",tabulist[towntravelmatrix.index(min(towntravelmatrix))])
 
     #part 6 :
     if (NC<NCmax) :
