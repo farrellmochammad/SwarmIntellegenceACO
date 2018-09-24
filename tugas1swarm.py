@@ -35,10 +35,7 @@ def countLk(tabulist,distancematrix):
             sum += distancematrix[tabulist[i][j]][tabulist[i][j+1]]
         Lkmatrix.append(sum)
     return Lkmatrix   
-        
-        
-    
-        
+         
 #Append data file to data
 data = []
 idx = 0
@@ -66,7 +63,7 @@ t = 0
 NC = 0
 Minvalue = 1000
 c = 0.5
-Q = 1
+Q = 2
 alpha = 15
 beta = 20
 NCmax = 100
