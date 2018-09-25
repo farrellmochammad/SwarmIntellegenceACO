@@ -59,7 +59,7 @@ for i in range(0,x):
 
 
 #part 1 : Initialization variable
-t = 0 ; NC = 0 ; Minvalue = 1000 ; c = 0.5 ; Q = 2 ; alpha = 15 ; beta = 20 ; NCmax = 60 ; ant = 96
+t = 0 ; NC = 0 ; Minvalue = 1000 ; c = 0.5 ; Q = 2 ; alpha = 10 ; beta = 20 ; NCmax = 60 ; ant = 96
 matrixdeltaTij =  [[0 for dataX in range(x)] for dataY in range(y)]
 matrixTij = [[c for dataX in range(x)] for dataY in range(y)]
 prevmatrix = []
