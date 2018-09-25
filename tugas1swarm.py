@@ -69,10 +69,14 @@ while (NC<=NCmax) :
     #part 2 : Initialization ant to tabu list
     s = 0
     tabulist = [[0 for dataX in range(x+1)] for dataY in range(ant)]
-    for k in range(0,x):
-        tabulist[k][0] = k
-    for k in range(x,ant):
-        tabulist[k][0] = random.randint(0,x-1)
+    if(ant<x):
+        for k in range(0,ant):
+            tabulist[k][0] = k
+    else :
+        for k in range(0,x):
+            tabulist[k][0] = k
+        for k in range(x,ant):
+            tabulist[k][0] = random.randint(0,x-1)
     
 
     #part 3 : Append route to each tabulist
