@@ -35,10 +35,7 @@ def countLk(tabulist,distancematrix):
             sum += distancematrix[tabulist[i][j]][tabulist[i][j+1]]
         Lkmatrix.append(sum)
     return Lkmatrix   
-        
-        
-    
-        
+         
 #Append data file to data
 data = []
 idx = 0
@@ -62,27 +59,24 @@ for i in range(0,x):
 
 
 #part 1 : Initialization variable
-t = 0
-NC = 0
-Minvalue = 1000
-c = 0.5
-Q = 1
-alpha = 15
-beta = 20
-NCmax = 100
+t = 0 ; NC = 0 ; Minvalue = 1000 ; c = 0.5 ; Q = 2 ; alpha = 15 ; beta = 20 ; NCmax = 60 ; ant = 96
 matrixdeltaTij =  [[0 for dataX in range(x)] for dataY in range(y)]
 matrixTij = [[c for dataX in range(x)] for dataY in range(y)]
-ant = 96
 prevmatrix = []
+stagnan = []
 
 while (NC<=NCmax) :
     #part 2 : Initialization ant to tabu list
     s = 0
     tabulist = [[0 for dataX in range(x+1)] for dataY in range(ant)]
-    for k in range(0,x):
-        tabulist[k][0] = k
-    for k in range(x,ant):
-        tabulist[k][0] = random.randint(0,x-1)
+    if(ant<x):
+        for k in range(0,ant):
+            tabulist[k][0] = k
+    else :
+        for k in range(0,x):
+            tabulist[k][0] = k
+        for k in range(x,ant):
+            tabulist[k][0] = random.randint(0,x-1)
     
 
     #part 3 : Append route to each tabulist
@@ -121,8 +115,9 @@ while (NC<=NCmax) :
     print ("Solusi jarak terbaik ke ",NC,  " : ",Minvalue)
     print ("Solusi rute terbaik : ",tabulist[towntravelmatrix.index(min(towntravelmatrix))])
 
+
     #part 6 :
-    if (NC<NCmax) :
+    if (NC<NCmax)  :
         tabulist = [[0 for dataX in range(x+1)] for dataY in range(y)]
     elif(NC==NCmax-1) :
         print towntravelmatrix
